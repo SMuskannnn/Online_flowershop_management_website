@@ -1,0 +1,23 @@
+-- Inserting values into Product_Category table
+INSERT INTO Product_Category (id, category_name)
+VALUES
+    (1, 'Roses'),
+    (2, 'Tulips'),
+    (3, 'Lilies'),
+    (4, 'sunflowers'),
+    (5, 'chrysanthamums'),
+    (6, 'mixes');
+
+
+
+-- Inserting values into Product_Item table
+INSERT INTO Product_Item (id, category_id, name, description, sku, qty_in_stock, product_image, price)
+VALUES
+    ('PROD001', 1, 'Red Roses', 'Red roses for loved ones', 'SKU001', 10, './images/rose1.jpg', 999.99),
+    ('PROD002', 1, 'Red Roses', 'Bold roses to brighten anyones day', 'SKU002', 15, './images/rose2.jpg', 699.50),
+    ('PROD003', 1, 'Pink Roses', 'keeps you alive', 'SKU003', 8, './images/rose3.jpg', 1009.99),
+    ('PROD004', 1, 'White Roses', 'a bouquet of calmness and beauty', 'SKU004', 10, './images/rose4.jpg', 599.99),
+    ('PROD003', 1, 'Single floret', 'Single floret rose bouquet'SKU005', 8, './images/rose5.jpg', 799.99),
+    ('PROD004', 1, 'Pink Roses', 'A bouquet of pink roses', 'SKU006', 10, './images/rose6.jpg', 299.99),
+    ('PROD018', 5, 'White Chrysanthamums', '', 'SKU018', 2, './images/chry1.jpg', 699.99),
+    ('PROD019', 5, 'Purple Chrysanthamums', '', 'SKU019', 3, './images/chry2.jpg', 899.50);
