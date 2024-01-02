@@ -1,0 +1,136 @@
+-- User table with User_Credentials and User_Profile
+CREATE TABLE site_user (
+    id VARCHAR(8) PRIMARY KEY,
+    full_name varchar(30)
+    username VARCHAR(30),
+    password VARCHAR(30),
+    email_address VARCHAR(100),
+    phone_number NUMERIC(10, 0) 
+);
+
+-- Admin table
+CREATE TABLE Admin (
+    admin_id VARCHAR(8) PRIMARY KEY,
+    username VARCHAR(30),
+    password VARCHAR(30)
+);
+
+CREATE TABLE User_Log (
+    user_id VARCHAR(8) REFERENCES site_user(id),
+    username VARCHAR(30),
+    login_time Timestamp,
+    logout_time Timestamp,
+    PRIMARY KEY (user_id, username)
+);
+
+/*CREATE TABLE User_Profile (
+    user_id VARCHAR(8) REFERENCES site_user(id) ON DELETE CASCADE,
+    email_address VARCHAR(100),
+    phone_number NUMERIC(10, 0),
+    PRIMARY KEY (user_id, email_address)
+);*/
+
+
+-- Address table
+CREATE TABLE Address (
+    id int AUTO_INCREMENT PRIMARY KEY,
+    street_number NUMERIC(10, 0),
+    address_line VARCHAR(80) NOT NULL,
+    city VARCHAR(30) NOT NULL,
+    postal_code NUMERIC(10, 0) NOT NULL,
+    state_id NUMERIC(2, 0) REFERENCES State(id) ON DELETE CASCADE
+);
+
+-- State table
+CREATE TABLE State (
+    id NUMERIC(2, 0) PRIMARY KEY,
+    state_name VARCHAR(50) NOT NULL
+);
+
+-- User_Address table
+CREATE TABLE User_Address (
+    user_id VARCHAR(8) REFERENCES site_user(id) ON DELETE CASCADE,
+    address_id VARCHAR(4) REFERENCES Address(id) ON DELETE CASCADE,
+    is_default BOOLEAN,
+    PRIMARY KEY (user_id, address_id)
+);
+
+-- Payment Method table with Payment_Type
+CREATE TABLE Payment_Method (
+    id SERIAL PRIMARY KEY,
+    user_id VARCHAR(8) REFERENCES site_user(id), --here's another
+    payment_type_id NUMERIC(2, 0) REFERENCES Payment_Type(id),
+    provider VARCHAR(50),
+    account_number VARCHAR(30),
+    expiry_date DATE,
+    is_default BOOLEAN
+);
+
+CREATE TABLE Payment_Type (
+    id NUMERIC(2, 0) PRIMARY KEY,
+    value VARCHAR(20) NOT NULL
+);
+
+-- Shopping Cart and Shopping Cart Item tables
+CREATE TABLE Shopping_Cart (
+    id SERIAL PRIMARY KEY,
+    user_id VARCHAR(8),
+    FOREIGN KEY (user_id) REFERENCES site_user(id) ON DELETE CASCADE
+);
+
+CREATE TABLE Shopping_Cart_Item (
+    cart_id SERIAL,
+    product_item_id VARCHAR(8),
+    price_pp Decimal(10,2),
+    qty NUMERIC(5, 0),
+    PRIMARY KEY (cart_id, product_item_id),
+    FOREIGN KEY (cart_id) REFERENCES Shopping_Cart(id) ON DELETE CASCADE
+);
+
+
+
+-- Product and Product Category tables
+CREATE TABLE Product_Category (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    category_name VARCHAR(50) NOT NULL
+);
+
+CREATE TABLE Product_Item (
+    id VARCHAR(8) PRIMARY KEY,
+    category_id NUMERIC(2, 0) REFERENCES Product_Category(id),
+    name VARCHAR(50),
+    description TEXT,
+    sku VARCHAR(20),
+    qty_in_stock NUMERIC(5, 0),
+    product_image VARCHAR(100), 
+    price DECIMAL(10, 2)
+);
+
+
+
+
+-- User Review, Order Line, and Shop Order tables
+CREATE TABLE User_Review (
+    id SERIAL PRIMARY KEY,
+    user_id VARCHAR(8) REFERENCES site_user(id) ON DELETE CASCADE,
+    comment TEXT
+);
+
+CREATE TABLE Order_Line (
+    id SERIAL PRIMARY KEY,
+    product_item_id VARCHAR(8) REFERENCES Product_Item(id),
+    order_id VARCHAR(8),
+    qty NUMERIC(5, 0),
+    price DECIMAL(10, 2)
+);
+
+CREATE TABLE Shop_Order (
+    id varchar(8) PRIMARY KEY,
+    user_id VARCHAR(8) REFERENCES site_user(id),
+    order_date DATE,
+    payment_method_id NUMERIC(8, 0) REFERENCES Payment_Method(id),
+    shipping_address VARCHAR(4) REFERENCES Address(id),
+    order_total DECIMAL(10, 2)
+);
+
+

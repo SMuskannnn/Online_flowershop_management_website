@@ -1,0 +1,107 @@
+/*MAIN PAGE STYLE*/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.logo{
+    width: 5%;
+    height: 5%;
+    border-radius: 50%;
+}
+
+.welcome-img {
+    width: 100%; /* Set the width of the container */
+    height: 300px; /* Set the height of the container */
+    object-fit: cover; /* Cover the entire container */
+  }
+
+  .position-relative {
+    position: relative;
+  }
+  
+  .overlay-text {
+    position: absolute;
+    top: 50%; /* Adjust the top position as needed */
+    left: 50%; /* Adjust the left position as needed */
+    transform: translate(-50%, -50%); /* Center the text */
+    color: white; /* Text color */
+    text-align: center; /* Center-align the text */
+    font-size: 40px; /* Adjust the font size as needed */
+  }
+
+  .foot {
+    padding: 1rem; /* You can adjust the padding as needed */
+    text-align: center; /* Centers the text */
+
+  }
+  
+  .custom-background {
+    background-color: #FFDAB9; /* Defines the background color */
+  }
+
+  .gallery {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .element {
+    flex: 0 0 calc(33.33% - 20px); /* 33.33% width for three images with margin */
+    margin: 10px; /* Margin between images */
+    box-sizing: border-box; /* Include padding and border in element's total width and height */
+  }
+  
+  .category {
+    width: 100%; /* Ensure images take full width of their containers */
+    height: auto; /* Maintain aspect ratio */
+  }
+  
+  .category-name {
+    color: black; /* Text color */
+    text-align: center; /* Center-align the text */
+    font-size: 30px; /* Adjust the font size as needed */
+    font-family: Georgia, 'Times New Roman', Times, serif; /* Use Pacifico font */
+  }
+  
+  
+
+  .feedback-form {
+    width: 100%; /* Set the width of the container */
+    margin: 0 auto; /* Center the container */
+    background-color: #f2f2f2; /* Light gray background color */
+    padding: 20px;
+  }
+  
+  textarea {
+    width: calc(100% - 40px); /* Calculate the width with 10px padding on each side */
+    padding: 20px; /* Add padding for spacing */
+    box-sizing: border-box; /* Include padding in the width calculation */
+    margin-bottom: 10px; /* Margin between textarea and submit button */
+  }
+  
+  input[type="submit"] {
+    width: 30%;
+    padding: 10px;
+    box-sizing: border-box;
+    margin-bottom: 30px;
+    background-color: #FFDAB9;
+  }
+  
+
+/*SUB PAGES STYLE*/
+/* Admin style  */
+.button {
+  display: flex;
+  justify-content: space-around; /* Adjust the space between buttons */
+  align-items: center; /* Align buttons vertically */
+}
+
+.button button {
+  padding: 10px 20px; /* Adjust padding to increase button size */
+  margin: 5px; /* Adjust margin to create space between buttons */
+}
+  
+  
+  
+  
